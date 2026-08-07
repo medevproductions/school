@@ -29,4 +29,4 @@ exec /entrypoint.sh odoo \
     --http-port=8069 \
     --proxy-mode \
     --database="${PGDATABASE:-postgres}" \
-    -i base
+    -i base,openeducat_core,openeducat_erp
