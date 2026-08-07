@@ -3,7 +3,7 @@ FROM odoo:18.0
 USER root
 
 # Copy custom modules to Odoo extra-addons
-COPY . /mnt/extra-addons/
+COPY ./openeducat/openeducat_erp-18.0-beta/ /mnt/extra-addons/
 
 # Copy custom entrypoint wrapper
 COPY entrypoint.sh /custom-entrypoint.sh
