@@ -24,9 +24,9 @@ export PORT="$PGPORT"
 export USER="$ODOO_USER"
 export PASSWORD="$ODOO_PASSWORD"
 
-# 3. Ejecutar Odoo. Pasamos el puerto web de Railway usando --http-port
-# Añadimos "-i base" para que inicialice automáticamente la base de datos vacía de Railway
+# 3. Ejecutar Odoo. Forzamos el puerto 8069 y activamos proxy-mode
 exec /entrypoint.sh odoo \
-    --http-port="$RAILWAY_WEB_PORT" \
+    --http-port=8069 \
+    --proxy-mode \
     --database="${PGDATABASE:-postgres}" \
     -i base
