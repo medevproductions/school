@@ -1,10 +1,13 @@
 #!/bin/bash
 set -e
 
-# Railway sets PORT variable for HTTP server, but Odoo entrypoint confuses PORT with DB PORT.
-# We explicitly override DB port variables for Odoo script.
+# Ignorar la variable PORT de Railway para la base de datos
+unset PORT
 
-export PGPORT=5432
-export DB_PORT=5432
-
-exec /entrypoint.sh odoo "$@" --db_port=5432
+# Ejecutar Odoo forzando los datos de conexión de Postgres que provee Railway
+exec /entrypoint.sh odoo \
+    --db_host="${PGHOST}" \
+    --db_port="${PGPORT:-5432}" \
+    --db_user="${PGUSER}" \
+    --db_password="${PGPASSWORD}" \
+    --database="${PGDATABASE:-postgres}"
