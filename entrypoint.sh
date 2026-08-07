@@ -25,6 +25,8 @@ export USER="$ODOO_USER"
 export PASSWORD="$ODOO_PASSWORD"
 
 # 3. Ejecutar Odoo. Pasamos el puerto web de Railway usando --http-port
+# Añadimos "-i base" para que inicialice automáticamente la base de datos vacía de Railway
 exec /entrypoint.sh odoo \
     --http-port="$RAILWAY_WEB_PORT" \
-    --database="${PGDATABASE:-postgres}"
+    --database="${PGDATABASE:-postgres}" \
+    -i base
