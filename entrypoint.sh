@@ -17,6 +17,11 @@ else
     export ODOO_PASSWORD="$PGPASSWORD"
 fi
 
+# El entrypoint oficial de Odoo lee la variable de entorno 'USER', por lo que debemos sobreescribirla
+export USER="$ODOO_USER"
+export DB_USER="$ODOO_USER"
+export POSTGRES_USER="$ODOO_USER"
+
 # Ejecutar Odoo forzando los datos de conexión de Postgres que provee Railway
 exec /entrypoint.sh odoo \
     --db_host="${PGHOST}" \
